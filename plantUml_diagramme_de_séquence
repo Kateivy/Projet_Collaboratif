@@ -1,0 +1,10 @@
+@startuml
+Navigateur -> Controleur : GET /creerProjet
+Controleur -> Vue : creerProjet.xhtml
+Vue -> Navigateur : formulaire vierge
+Navigateur -> Controleur : POST  /creerProjet
+Controleur -> Modele : Projet.persist()
+Modele -> Controleur : soit ok, soit une exception
+Controleur -> Navigateur : redirection vers /espacePersonnel
+Navigateur -> Controleur : GET /espacePersonnel
+@enduml
