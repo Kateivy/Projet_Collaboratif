@@ -1,0 +1,377 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.5.1
+-- https://www.phpmyadmin.net/
+--
+-- Client :  localhost:3306
+-- Généré le :  Ven 03 Mars 2017 à 15:17
+-- Version du serveur :  5.6.34
+-- Version de PHP :  7.1.0
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+
+DELIMITER $$
+--
+-- Procédures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `creer_formateur` ()  BEGIN
+	
+	SET FOREIGN_KEY_CHECKS=0;
+
+  TRUNCATE TABLE PERSONNE;
+  TRUNCATE TABLE FORMATEUR;
+
+	SET FOREIGN_KEY_CHECKS=1;
+
+	BEGIN
+ 
+	  DECLARE EXIT HANDLER FOR SQLSTATE '23000'
+	  BEGIN
+  
+      ROLLBACK;
+      -- Afficher l'erreur
+      SHOW ERRORS;
+	  END;
+
+  
+		START TRANSACTION;
+    INSERT INTO PERSONNE (id_personne, nom,prenom,ville,telephone,email,mot_de_passe,code_postale,rue) VALUES 
+  (1, "Dupont","Pierre","Cachan","0678453423","dpierre","sqddfs","94200","Paul Vaillant"),
+(2, "Albert","Medhi","Massy","067344523","amedhi","gsgsgsgs","91300","Breton");
+
+
+    INSERT INTO FORMATEUR (ID_PERSONNE) VALUES
+    (1),
+    (2);
+
+
+    COMMIT;
+  END;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `jeux_de_tests` ()  BEGIN
+	
+	SET FOREIGN_KEY_CHECKS=0;
+
+  TRUNCATE TABLE PERSONNE;
+  TRUNCATE TABLE FORMATEUR;
+   TRUNCATE TABLE ETUDIANT;
+   TRUNCATE TABLE SESSION;
+   TRUNCATE TABLE PROJET;
+   TRUNCATE TABLE PARTICIPANT;
+
+	SET FOREIGN_KEY_CHECKS=1;
+
+	BEGIN
+ 
+	  DECLARE EXIT HANDLER FOR SQLSTATE '23000'
+	  BEGIN
+  
+      ROLLBACK;
+      -- Afficher l'erreur
+      SHOW ERRORS;
+	  END;
+
+  
+		START TRANSACTION;
+    INSERT INTO PERSONNE (id_personne, nom,prenom,ville,telephone,email,mot_de_passe,code_postal,rue) VALUES 
+	(1, 'Dupont','Pierre','Cachan','0678453423','dpierre','sqddfs','94200','Paul Vaillant'),
+	(2, 'Albert','Medhi','Massy','067344523','amedhi','gsgsgsgs','91300','Breton'),
+    (3, 'Patrice','Medhi','Massy','067344523','amedhi','gsgsgsgs','91300','Breton'),
+    (3, 'Melanie','Medhi','Massy','067344523','amedhi','gsgsgsgs','91300','Breton'),
+	(4, 'Julie','Medhi','Massy','067344523','amedhi','gsgsgsgs','91300','Breton'),
+	(5, 'Olivier','Medhi','Massy','067344523','amedhi','gsgsgsgs','91300','Breton'),
+	(6, 'Alex','Medhi','Massy','067344523','amedhi','gsgsgsgs','91300','Breton'),
+	(7, 'Maximilien','Medhi','Massy','067344523','amedhi','gsgsgsgs','91300','Breton'),
+	(8, 'Hela','Arouay','Noisy le Grand','0675576230','h.arouay@feh.fr','gsgsgsgs','93000','Breton'),
+    (9, 'Kate','Absalon','Juvisy','067344523','k.absalon@ef.fr','gsgsgsgs','91300','Breton'),
+    (10, 'Keidy','Chaffort','Cachan','067344523','k.chaffort@bk.fr','gsgsgsgs','94300','Breton'),
+    (11, 'Djiby','Diallo','Cachan','067344523','d.diallo@fjd.fr','gsgsgsgs','94300','Breton'),
+    (12, 'Marco','Rodrigez','Massy','067344523','amedhi','gsgsgsgs','91300','Breton'),
+    (13, 'Mohamed','Medhi','Massy','067344523','amedhi','gsgsgsgs','91300','Breton'),
+    (14, 'Ibrahim','Medhi','Massy','067344523','amedhi','gsgsgsgs','91300','Breton'),
+    (15, 'Alain','Medhi','Massy','067344523','a.jhsdjk@njdf.fr','gsgsgsgs','91300','Breton');
+
+
+    INSERT INTO FORMATEUR (ID_PERSONNE) VALUES
+    (1),
+    (2),
+    (3),
+    (4),
+    (5),
+    (8),
+    (9);
+    
+     INSERT INTO ETUDIANT (ID_PERSONNE) VALUES
+    (6),
+    (7),
+    (10),
+    (11),
+    (12),
+    (13),
+    (14),
+    (15);
+    
+
+     INSERT INTO SESSION (ID_SESSION, TITRE, DESCRIPTION) VALUES
+    (1,'Java','blablabla'),
+    (2,'Php','blablabla'),
+    (3,'Html','blablabla');
+    
+    
+     INSERT INTO PROJET (ID_PROJET, ID_SESSION, ID_CREATEUR, TITRE,SUJET,DATE_CREATION, DATE_LIMITE_RENDU ) VALUES
+    (1,1,1,'projet_Java','blablabla','',''),
+	(2,1,2,'projet_JEE','blablabla','',''),
+    (3,2,2,'projet_php','blablabla','',''),
+    (4,1,1,'projet_Java2','blablabla','','');
+        
+     INSERT INTO EQUIPE (ID_EQUIPE, ID_CREATEUR, TITRE,COMMENTAIRES,DATE_CREATION ) VALUES
+    (1,6,'equipe_java','blablabla',''),
+	(2,6,'projet_php','blablabla',''),
+    (3,10,'projet_java2','blablabla','');
+
+    
+    
+      INSERT INTO PARTICIPANT (ID_PERSONNE, ID_EQUIPE) VALUES
+    (10,1),
+    (12,1),
+    (12,2);
+
+    COMMIT;
+  END;
+END$$
+
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `EQUIPE`
+--
+
+CREATE TABLE `EQUIPE` (
+  `ID_EQUIPE` int(11) NOT NULL,
+  `ID_CREATEUR` int(11) NOT NULL,
+  `TITRE` varchar(128) NOT NULL,
+  `COMMENTAIRE` varchar(128) DEFAULT NULL,
+  `DATE_CREATION` date NOT NULL,
+  `ID_PROJET` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ETUDIANT`
+--
+
+CREATE TABLE `ETUDIANT` (
+  `ID_PERSONNE` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ETUDIANT_PROMOTION`
+--
+
+CREATE TABLE `ETUDIANT_PROMOTION` (
+  `ID_SESSION` int(11) NOT NULL,
+  `ID_PERSONNE` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `FORMATEUR`
+--
+
+CREATE TABLE `FORMATEUR` (
+  `ID_PERSONNE` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `PARTICIPANT`
+--
+
+CREATE TABLE `PARTICIPANT` (
+  `ID_PERSONNE` int(11) NOT NULL,
+  `ID_EQUIPE` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `PERSONNE`
+--
+
+CREATE TABLE `PERSONNE` (
+  `ID_PERSONNE` int(11) NOT NULL,
+  `NOM` varchar(128) NOT NULL,
+  `PRENOM` varchar(128) NOT NULL,
+  `VILLE` varchar(128) NOT NULL,
+  `TELEPHONE` char(10) NOT NULL,
+  `EMAIL` varchar(128) NOT NULL,
+  `MOT_DE_PASSE` varchar(128) NOT NULL,
+  `CODE_POSTAL` varchar(128) NOT NULL,
+  `RUE` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `PROJET`
+--
+
+CREATE TABLE `PROJET` (
+  `ID_PROJET` int(11) NOT NULL,
+  `ID_SESSION` int(11) NOT NULL,
+  `ID_CREATEUR` int(11) NOT NULL,
+  `TITRE` varchar(128) NOT NULL,
+  `SUJET` varchar(128) NOT NULL,
+  `DATE_CREATION` date NOT NULL,
+  `DATE_LIMITE_RENDU` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `SESSION`
+--
+
+CREATE TABLE `SESSION` (
+  `ID_SESSION` int(11) NOT NULL,
+  `TITRE` varchar(128) NOT NULL,
+  `DESCRIPTION` varchar(128) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `EQUIPE`
+--
+ALTER TABLE `EQUIPE`
+  ADD PRIMARY KEY (`ID_EQUIPE`),
+  ADD KEY `I_FK_EQUIPE_ETUDIANT` (`ID_CREATEUR`),
+  ADD KEY `fk_EQUIPE_PROJET1_idx` (`ID_PROJET`);
+
+--
+-- Index pour la table `ETUDIANT`
+--
+ALTER TABLE `ETUDIANT`
+  ADD PRIMARY KEY (`ID_PERSONNE`);
+
+--
+-- Index pour la table `ETUDIANT_PROMOTION`
+--
+ALTER TABLE `ETUDIANT_PROMOTION`
+  ADD PRIMARY KEY (`ID_SESSION`,`ID_PERSONNE`),
+  ADD KEY `I_FK_ETUDIANT_PROMOTION_SESSION` (`ID_SESSION`),
+  ADD KEY `I_FK_ETUDIANT_PROMOTION_ETUDIANT` (`ID_PERSONNE`);
+
+--
+-- Index pour la table `FORMATEUR`
+--
+ALTER TABLE `FORMATEUR`
+  ADD PRIMARY KEY (`ID_PERSONNE`);
+
+--
+-- Index pour la table `PARTICIPANT`
+--
+ALTER TABLE `PARTICIPANT`
+  ADD PRIMARY KEY (`ID_PERSONNE`,`ID_EQUIPE`),
+  ADD KEY `I_FK_PARTICIPANT_ETUDIANT` (`ID_PERSONNE`),
+  ADD KEY `I_FK_PARTICIPANT_EQUIPE` (`ID_EQUIPE`);
+
+--
+-- Index pour la table `PERSONNE`
+--
+ALTER TABLE `PERSONNE`
+  ADD PRIMARY KEY (`ID_PERSONNE`);
+
+--
+-- Index pour la table `PROJET`
+--
+ALTER TABLE `PROJET`
+  ADD PRIMARY KEY (`ID_PROJET`),
+  ADD KEY `I_FK_PROJET_FORMATEUR` (`ID_CREATEUR`),
+  ADD KEY `I_FK_PROJET_SESSION` (`ID_SESSION`);
+
+--
+-- Index pour la table `SESSION`
+--
+ALTER TABLE `SESSION`
+  ADD PRIMARY KEY (`ID_SESSION`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `EQUIPE`
+--
+ALTER TABLE `EQUIPE`
+  MODIFY `ID_EQUIPE` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `PERSONNE`
+--
+ALTER TABLE `PERSONNE`
+  MODIFY `ID_PERSONNE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `PROJET`
+--
+ALTER TABLE `PROJET`
+  MODIFY `ID_PROJET` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `SESSION`
+--
+ALTER TABLE `SESSION`
+  MODIFY `ID_SESSION` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `EQUIPE`
+--
+ALTER TABLE `EQUIPE`
+  ADD CONSTRAINT `equipe_ibfk_1` FOREIGN KEY (`ID_CREATEUR`) REFERENCES `ETUDIANT` (`ID_PERSONNE`),
+  ADD CONSTRAINT `fk_EQUIPE_PROJET1` FOREIGN KEY (`ID_PROJET`) REFERENCES `PROJET` (`ID_PROJET`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `ETUDIANT`
+--
+ALTER TABLE `ETUDIANT`
+  ADD CONSTRAINT `etudiant_ibfk_1` FOREIGN KEY (`ID_PERSONNE`) REFERENCES `PERSONNE` (`ID_PERSONNE`);
+
+--
+-- Contraintes pour la table `ETUDIANT_PROMOTION`
+--
+ALTER TABLE `ETUDIANT_PROMOTION`
+  ADD CONSTRAINT `etudiant_promotion_ibfk_1` FOREIGN KEY (`ID_SESSION`) REFERENCES `SESSION` (`ID_SESSION`),
+  ADD CONSTRAINT `etudiant_promotion_ibfk_2` FOREIGN KEY (`ID_PERSONNE`) REFERENCES `ETUDIANT` (`ID_PERSONNE`);
+
+--
+-- Contraintes pour la table `FORMATEUR`
+--
+ALTER TABLE `FORMATEUR`
+  ADD CONSTRAINT `formateur_ibfk_1` FOREIGN KEY (`ID_PERSONNE`) REFERENCES `PERSONNE` (`ID_PERSONNE`);
+
+--
+-- Contraintes pour la table `PARTICIPANT`
+--
+ALTER TABLE `PARTICIPANT`
+  ADD CONSTRAINT `participant_ibfk_1` FOREIGN KEY (`ID_PERSONNE`) REFERENCES `ETUDIANT` (`ID_PERSONNE`),
+  ADD CONSTRAINT `participant_ibfk_3` FOREIGN KEY (`ID_EQUIPE`) REFERENCES `EQUIPE` (`ID_EQUIPE`);
+
+--
+-- Contraintes pour la table `PROJET`
+--
+ALTER TABLE `PROJET`
+  ADD CONSTRAINT `projet_ibfk_1` FOREIGN KEY (`ID_CREATEUR`) REFERENCES `FORMATEUR` (`ID_PERSONNE`),
+  ADD CONSTRAINT `projet_ibfk_2` FOREIGN KEY (`ID_SESSION`) REFERENCES `SESSION` (`ID_SESSION`);
