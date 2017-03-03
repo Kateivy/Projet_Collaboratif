@@ -1,0 +1,74 @@
+Technologie utilisée: Java avec NetBean
+Nom de la base de donnée : Projet_Collaboratif (cf: BDD_Sql + Procedure_stocké)
+
+Lien utiles : http://plantuml.com
+              https://www.mysql.fr/products/workbench/
+              
+              
+---------------------------------------Création de projet / NetBean-------------------------------------------
+
+
+======================================================ETAPE 1===================================================
+
+---------------------------------------Création Espace personnel Formateur------------------------------------- 
+
+Seul un formateur peut créer un projet, il devient "Créateur" du projet
+Seul un formateur peur modifier un projet
+Chaque page du projet nécessite une réécriture de l’url
+Le formateur peut voir tout les projets en cour, dont ceux fait par les autres formateurs
+Le formateur peut voir les équipes associées à son ou ses projet(s)
+
+----------------------------------------------"Créer un projet"------------------------------------------ 
+Création Entité "Creer_Projet"
+Création du formulaire de création de projet
+
+Création du modele
+Création du controleur
+
+
+
+======================================================ETAPE 2===================================================
+
+---------------------------------------Création Espace personnel Etudiant------------------------------------- 
+
+Un étudiant peut créer une équipe, il devient "Créateur" d'une équipe
+Un étudiant peut ajouter des membres
+Un étudiant peut retirer des membres 
+Un étudiant peut ajouter des documents
+
+Un édutiant peut participer à un projet, en devenant un participant
+Un étudiant peut voir toutes les équipes projets
+Un étudiant peut participer à un projet que si il est inscrit dans la session associée
+
+Un étudiant peut voir la liste des étudiants sans équipe
+
+----------------------------------------------"Créer une équipe"------------------------------------------ 
+Création Entité "Creer_Equipe"
+Création du formulaire de création d'une équipe
+Création du modele
+Création du controleur
+
+
+
+------------------------------------------Liste des taches et temps éstimé:-------------------------------------------
+
+"Etape n°1" + Base de donnée  =>  35h 
+
+--------------------------------------------Contraintes: ----------------------------------------------------
+
+Lorsqu'un étudiant n'appartient à aucune équipe, il apparait sur la liste des étudiants
+
+Ajouter des contraintes...
+
+------------------------------------------------Jeux de tests : cf.procedure_stocké-------------------------------
+
+Création d'au moins 2 formateurs 
+Création d'au moins 2 sessions de formation 
+Création d'au moins deux projets 2 projets par formateur
+Création d'au moins 2 étudiants: vérifier si les étudiants restant apparaissent dans la liste
+Création d'au moins 1 équipe par 2 étudiants 
+Au moins 1 étudiant participe à une équipe
+Au moins 1 étudiant participe à une équipe et est à la fois Créateur d'une équipe
+
+======================================================================================================================
+
