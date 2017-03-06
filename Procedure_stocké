@@ -1,36 +1,32 @@
 DELIMITER $$
-DROP PROCEDURE IF EXISTS jeux_de_tests $$
-CREATE PROCEDURE jeux_de_tests()
+DROP PROCEDURE IF EXISTS jeux_de_tests$$
+CREATE PROCEDURE jeux_de_tests() 
 BEGIN
-	
 	SET FOREIGN_KEY_CHECKS=0;
 
-  TRUNCATE TABLE PERSONNE;
-  TRUNCATE TABLE FORMATEUR;
-   TRUNCATE TABLE ETUDIANT;
-   TRUNCATE TABLE SESSION;
-   TRUNCATE TABLE PROJET;
-   TRUNCATE TABLE PARTICIPANT;
+	TRUNCATE TABLE PERSONNE;
+	TRUNCATE TABLE FORMATEUR;
+	TRUNCATE TABLE ETUDIANT;
+	TRUNCATE TABLE SESSION;
+	TRUNCATE TABLE PROJET;
+	TRUNCATE TABLE PARTICIPANT;
 
 	SET FOREIGN_KEY_CHECKS=1;
 
 	BEGIN
- 
-	  DECLARE EXIT HANDLER FOR SQLSTATE '23000'
-	  BEGIN
-  
-      ROLLBACK;
-      -- Afficher l'erreur
-      SHOW ERRORS;
-	  END;
+		DECLARE EXIT HANDLER FOR SQLSTATE '23000'
+		BEGIN
+			ROLLBACK;
+			-- Afficher l'erreur
+			SHOW ERRORS;
+		END;
 
   
 		START TRANSACTION;
-    INSERT INTO PERSONNE (id_personne, nom,prenom,ville,telephone,email,mot_de_passe,code_postal,rue) VALUES 
+		INSERT INTO PERSONNE (id_personne, nom,prenom,ville,telephone,email,mot_de_passe,code_postal,rue) VALUES 
 	(1, 'Dupont','Pierre','Cachan','0678453423','dpierre','sqddfs','94200','Paul Vaillant'),
 	(2, 'Albert','Medhi','Massy','067344523','amedhi','gsgsgsgs','91300','Breton'),
     (3, 'Patrice','Medhi','Massy','067344523','amedhi','gsgsgsgs','91300','Breton'),
-    (3, 'Melanie','Medhi','Massy','067344523','amedhi','gsgsgsgs','91300','Breton'),
 	(4, 'Julie','Medhi','Massy','067344523','amedhi','gsgsgsgs','91300','Breton'),
 	(5, 'Olivier','Medhi','Massy','067344523','amedhi','gsgsgsgs','91300','Breton'),
 	(6, 'Alex','Medhi','Massy','067344523','amedhi','gsgsgsgs','91300','Breton'),
@@ -45,7 +41,7 @@ BEGIN
     (15, 'Alain','Medhi','Massy','067344523','a.jhsdjk@njdf.fr','gsgsgsgs','91300','Breton');
 
 
-    INSERT INTO FORMATEUR (ID_PERSONNE) VALUES
+		INSERT INTO FORMATEUR (ID_PERSONNE) VALUES
     (1),
     (2),
     (3),
@@ -54,7 +50,7 @@ BEGIN
     (8),
     (9);
     
-     INSERT INTO ETUDIANT (ID_PERSONNE) VALUES
+		INSERT INTO ETUDIANT (ID_PERSONNE) VALUES
     (6),
     (7),
     (10),
@@ -65,34 +61,33 @@ BEGIN
     (15);
     
 
-     INSERT INTO SESSION (ID_SESSION, TITRE, DESCRIPTION) VALUES
+		INSERT INTO SESSION (ID_SESSION, TITRE, DESCRIPTION) VALUES
     (1,'Java','blablabla'),
     (2,'Php','blablabla'),
     (3,'Html','blablabla');
     
     
-     INSERT INTO PROJET (ID_PROJET, ID_SESSION, ID_CREATEUR, TITRE,SUJET,DATE_CREATION, DATE_LIMITE_RENDU ) VALUES
+		INSERT INTO PROJET (ID_PROJET, ID_SESSION, ID_CREATEUR, TITRE,SUJET,DATE_CREATION, DATE_LIMITE_RENDU ) VALUES
     (1,1,1,'projet_Java','blablabla','',''),
 	(2,1,2,'projet_JEE','blablabla','',''),
     (3,2,2,'projet_php','blablabla','',''),
     (4,1,1,'projet_Java2','blablabla','','');
         
-     INSERT INTO EQUIPE (ID_EQUIPE, ID_CREATEUR, TITRE,COMMENTAIRES,DATE_CREATION ) VALUES
-    (1,6,'equipe_java','blablabla',''),
-	(2,6,'projet_php','blablabla',''),
-    (3,10,'projet_java2','blablabla','');
+		INSERT INTO EQUIPE (ID_EQUIPE, ID_CREATEUR, ID_PROJET, TITRE,COMMENTAIRE,DATE_CREATION ) VALUES
+    (1,6,1,'equipe_java','blablabla',''),
+	(2,6,1,'projet_php','blablabla',''),
+    (3,10,1,'projet_java2','blablabla','');
 
     
     
-      INSERT INTO PARTICIPANT (ID_PERSONNE, ID_EQUIPE) VALUES
+		INSERT INTO PARTICIPANT (ID_PERSONNE,ID_EQUIPE) VALUES
     (10,1),
     (12,1),
     (12,2);
 
-    COMMIT;
-  END;
-END
-$$
+		COMMIT;
+	END;
+END$$
 
 CALL jeux_de_tests()$$
 DELIMITER $$
