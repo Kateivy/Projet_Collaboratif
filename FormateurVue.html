@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>Espace Formateur</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<form>
+	    <label for="Id">Id Projet:</label>
+       <input type="text" name="id_projet" id="id_projet" autofocus placeholder="Ex : MVC java" size="10" maxlength="10"required/>
+	   <br/>
+		<br/>
+       <label for="Titre">Titre Projet:</label>
+       <input type="text" name="titre" id="titre" autofocus placeholder="Ex : MVC java" size="20" maxlength="20"required/>
+	   <br/>
+	   <br/>
+       <label for="Sujet">Sujet Projet :</label>
+       <input type="text" name="sujet" id="sujet" placeholder="Ex : java" size="20" maxlength="20"required/>
+       <br/>
+	   <br/>
+	   <label for="Session">Session Formation :</label>
+	   <input type="text" name="id_session" id="id_session" placeholder="Ex : java" size="10" maxlength="10"required/>
+       <br/>
+	   <br/>
+	  	   <label for="CreationProjet">Date de Création</label>
+	    <input type="date" name="Projet.date_creation" id="Projet.date_creationP">
+       <br/>
+	   <br/>
+	   <label for="Limite">Date Limite</label>
+	    <img src= "../ProjetCollaboratif/Images/calendaricon.gif">
+		<input type="date" name="Projet.date_limite_rendu" id="Projet.date_limite_rendu">
+       
+   <br/>
+   <br/>
+   <input type='submit' name='creerprojet' value='Créer Projet' >     <input type='reset' name='annuler' value='Annuler'>
+</form>
+	   
+	   
+	  
+</br>
+ <CENTER><TABLE width=80% border=1> <caption><h2>Liste des Projets en Cours</caption>
+ <br/>
+			<table border="3" cellpadding="10" cellspacing="1" width="80%">
+   <tr>
+      <th width="10%" align="center">Id Projet</th>
+     
+	  <th width="15%" align="center">Nom Projet</th>
+       <th width="15%" align="center">Sujet</th>
+	    <th width="15%" align="center">Date Limite</th>
+	  <th width="20%" align="left">Details Projet</th>
+   </tr> 
+   <tr>
+      <td align="center" valign="top">Projet.id_projet</td>
+      <td align="center" valign="top">Projet.titre</td>
+      <td align="center" valign="top">Projet.Sujet </td>
+	  <td align="center" valign="top"> Projet.date_imite_rendu </td>
+	  <td align="left" valign="top">ref ou bouton ,vers la pageProjetvue </td>
+   </tr>
+      </tr>
+</table>
+		</TABLE></CENTER>
+		</form>
+		
+	</body>
+</html>
