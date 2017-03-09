@@ -19,18 +19,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author CHAFFORT
  */
 @Entity
-@Table(name = "etudiant")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Etudiant.findAll", query = "SELECT e FROM Etudiant e"),
     @NamedQuery(name = "Etudiant.findByIdPersonne", query = "SELECT e FROM Etudiant e WHERE e.idPersonne = :idPersonne")})
@@ -69,7 +64,6 @@ public class Etudiant implements Serializable {
         this.idPersonne = idPersonne;
     }
 
-    @XmlTransient
     public Collection<Session> getSessionCollection() {
         return sessionCollection;
     }
@@ -78,7 +72,6 @@ public class Etudiant implements Serializable {
         this.sessionCollection = sessionCollection;
     }
 
-    @XmlTransient
     public Collection<Equipe> getEquipeCollection() {
         return equipeCollection;
     }
@@ -87,7 +80,6 @@ public class Etudiant implements Serializable {
         this.equipeCollection = equipeCollection;
     }
 
-    @XmlTransient
     public Collection<Equipe> getEquipeCollection1() {
         return equipeCollection1;
     }

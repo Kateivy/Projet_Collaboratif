@@ -7,6 +7,9 @@ package controleur;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +22,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "EspacePersonnelServlet", urlPatterns = {"/espacePersonnel"})
 public class EspacePersonnelServlet extends HttpServlet {
+    
+    private EntityManager em;
+
+    public EspacePersonnelServlet() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("Projet_collaboratif");
+        em = factory.createEntityManager();
+    }
 
     /**
      * Handles the HTTP <code>GET</code> method.

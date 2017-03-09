@@ -20,21 +20,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author CHAFFORT
  */
 @Entity
-@Table(name = "projet")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Projet.findAll", query = "SELECT p FROM Projet p"),
     @NamedQuery(name = "Projet.findByIdProjet", query = "SELECT p FROM Projet p WHERE p.idProjet = :idProjet"),
@@ -52,12 +47,10 @@ public class Projet implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 128)
-    @Column(name = "TITRE")
     private String titre;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 128)
-    @Column(name = "SUJET")
     private String sujet;
     @Basic(optional = false)
     @NotNull
@@ -85,8 +78,18 @@ public class Projet implements Serializable {
         this.idProjet = idProjet;
     }
 
-    public Projet(String titre, String sujet, Date dateCreation, Date dateLimiteRendu) {
-        
+    public Projet(String titre, String sujet, Date dateCreation, Date dateLimiteRendu, Formateur idCreateur, Session idSession) {
+        this.titre = titre;
+        this.sujet = sujet;
+        this.dateCreation = dateCreation;
+        this.dateLimiteRendu = dateLimiteRendu;
+        this.idCreateur = idCreateur;
+        this.idSession = idSession;
+    }
+
+    
+    public Projet(Integer idProjet, String titre, String sujet, Date dateCreation, Date dateLimiteRendu) {
+        this.idProjet = idProjet;
         this.titre = titre;
         this.sujet = sujet;
         this.dateCreation = dateCreation;
@@ -149,7 +152,6 @@ public class Projet implements Serializable {
         this.idSession = idSession;
     }
 
-    @XmlTransient
     public Collection<Equipe> getEquipeCollection() {
         return equipeCollection;
     }

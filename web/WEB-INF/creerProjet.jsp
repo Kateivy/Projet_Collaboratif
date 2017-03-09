@@ -17,14 +17,18 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form method="post">
+        <form method="post" >
+            <label for="titre">Créateur:</label>
+            <input type="text" name="id_createur" id="id_createur" autofocus placeholder="Ex : MVC java" size="30" maxlength="10"required/>
+            <span class="error">${titreMsg}</span>
+            <br/>
             <label for="titre">Titre Projet:</label>
             <input type="text" name="titre" id="titre" autofocus placeholder="Ex : MVC java" size="30" maxlength="10"required/>
             <span class="error">${titreMsg}</span>
             <br/>
             <br/>
             <label for="Sujet">Sujet Projet :</label>
-            <input type="text" name="sujet" id="sujet" placeholder="Ex : java" size="30" maxlength="10"required/>
+            <input type="text" name="sujet" id="sujet" placeholder="Ex : java" size="30" maxlength="50"required/>
             <br/>
             <label for="Sujet">Session formation :</label>
             <input type="text" name="id_session" id="id_session" placeholder="Ex : java" size="30" maxlength="10"required/>
@@ -40,7 +44,7 @@ and open the template in the editor.
             <input type='submit' name='validate' value='Créer Projet' >
             <input type='reset' name='annuler' value='Annulation'>
             </br>
-
+            <div class="error">${msg}</div>
         </form>
 
     </body>

@@ -20,19 +20,14 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author CHAFFORT
  */
 @Entity
-@Table(name = "session")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Session.findAll", query = "SELECT s FROM Session s"),
     @NamedQuery(name = "Session.findByIdSession", query = "SELECT s FROM Session s WHERE s.idSession = :idSession"),
@@ -48,10 +43,8 @@ public class Session implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 128)
-    @Column(name = "TITRE")
     private String titre;
     @Size(max = 128)
-    @Column(name = "DESCRIPTION")
     private String description;
     @JoinTable(name = "etudiant_promotion", joinColumns = {
         @JoinColumn(name = "ID_SESSION", referencedColumnName = "ID_SESSION")}, inverseJoinColumns = {
@@ -97,7 +90,6 @@ public class Session implements Serializable {
         this.description = description;
     }
 
-    @XmlTransient
     public Collection<Etudiant> getEtudiantCollection() {
         return etudiantCollection;
     }
@@ -106,7 +98,6 @@ public class Session implements Serializable {
         this.etudiantCollection = etudiantCollection;
     }
 
-    @XmlTransient
     public Collection<Projet> getProjetCollection() {
         return projetCollection;
     }
