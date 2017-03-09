@@ -18,6 +18,9 @@ Chaque page du projet nécessite une réécriture de l’url
 Le formateur peut voir tout les projets en cour, dont ceux fait par les autres formateurs
 Le formateur peut voir les équipes associées à son ou ses projet(s)
 
+Créer liste de projet en cours
+Créer liste des équipes associés à chaque projet
+
 ----------------------------------------------"Créer un projet"------------------------------------------ 
 Création Entité "Creer_Projet"
 Création du formulaire de création de projet

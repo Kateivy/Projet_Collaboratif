@@ -1,0 +1,59 @@
+header{
+    
+}
+body
+{
+background-color: greenyellow;
+text-align:center;
+margin-top:150px;
+font-family: sans-serif, Arial;
+font-size:16px;
+}
+
+.form-style{
+font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+
+}
+
+
+
+.form-style input[type=submit],
+.form-style input[type=reset],
+.form-style input[type=button]{
+   
+    background: #EB3B88;
+    border: 1px solid #C94A81;
+    padding: 5px 15px 5px 15px;
+    margin: 10px 20px 10px 20px;
+    color: #FFCBE2;
+    box-shadow: inset -1px -1px 3px #FF62A7;
+    -moz-box-shadow: inset -1px -1px 3px #FF62A7;
+    -webkit-box-shadow: inset -1px -1px 3px #FF62A7;
+    border-radius: 3px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;    
+    font-weight: bold;
+   
+}
+
+.form-style input[type=text],
+.form-style input[type=date]{
+      padding: 5px 10px 5px 10px;
+      margin-left:80px ;
+    
+}
+
+.form-style label[for=titre],
+.form-style label[for=Sujet]{
+       padding: 10px 25px 10px 30px;
+}
+
+.form-style label[for=Session],
+.form-style label[for=Limite]{
+ 
+}
+
+.form-style fieldset { 
+    
+}
